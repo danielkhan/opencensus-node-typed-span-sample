@@ -66,7 +66,7 @@ export class HTTPClientSpan extends Span implements HTTPClientTypedSpan {
       } else if (isArray(this.attributes) && !this.attributes.includes(attr)) {
         missingAttributes.push(attr);
       }
-      if (!missingAttributes.length) throw new Error(`Missing attributes ${missingAttributes.join(', ')} on HTTPClientSpan`);
+      if (missingAttributes.length) throw new Error(`Missing attributes ${missingAttributes.join(', ')} on HTTPClientSpan`);
     });
     super.end();
   }
